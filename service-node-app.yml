@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service-node-app
+metadata: 
+  name: node-service
+spec:
+  selector: 
+    app: nodejs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000

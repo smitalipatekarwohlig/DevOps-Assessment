@@ -6,7 +6,7 @@ on:
 
 jobs:
   actions:
-    name: run when the code has push
+    name: run script when the code has push
     runs-on: ubuntu-latest
 
     steps:
