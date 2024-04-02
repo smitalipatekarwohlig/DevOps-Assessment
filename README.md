@@ -21,3 +21,5 @@ During the interview, be prepared to demonstrate the entire CI/CD pipeline:
 # Note
 
 To expedite the interview process, avoid deleting any essential resources, such as EC2 instances, Kubernetes clusters, or Minikube instances, to ensure a smooth demonstration of the CI/CD pipeline.
+
+<!-- test -->
