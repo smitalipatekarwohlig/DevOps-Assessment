@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  tests: 
+    runs-on: ununtu-latest
+  container: node:16
+    steps:
+      - run: node --version
+      - run: npm --version
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: node server.js
+
+      # - name: actions checkout
+      # - name: Setup node.js 
+      #   uses: actions/setup-node22
+      #   with: 
+      #     node-version: 18
+      # - name: Install dependencies
+      # - name: Run test
+      #   run: npm test
