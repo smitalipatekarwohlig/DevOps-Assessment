@@ -1,0 +1,14 @@
+name: test-actions
+on:
+  push: 
+    branches:
+      - "develop"
+
+jobs:
+  actions:
+    name: run when the code has push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: actions steps
+        run: echo "Github actions run"
