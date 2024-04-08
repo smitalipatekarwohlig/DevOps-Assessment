@@ -1,0 +1,30 @@
+name: Build docker image
+
+on: 
+  push: 
+    branches:
+      - develop   
+
+jobs:
+   build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+ 
+      - name: Login to docker 
+        run: echo ${{secrets.DOCKER_PASSWORD}} | 
+             docker login -u $
+             {{secrets.DOCKER_USERNAME}}
+             --password-stdin $
+             {{secrets.DOCKER_REGISTRY}}
+        
+      - name: Build docker image
+        run: docker build -t test-image . 
+
+      - name: Tag docker image
+        run: docker tag test-image:latest $ {{secrets.DOCKER_REGISTRY}}/ test-image:latest
+
+      - name: Push docker image
+        run: docker push test-image

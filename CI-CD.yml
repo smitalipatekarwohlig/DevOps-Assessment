@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: 
+          docker build -t your-docker-registry/your-image-name:${{ github.sha }} .
+          docker login -u your-username -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push your-docker-registry/your-image-name:${{ github.sha }}
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - name: Configure kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+          namespace: your-namespace
+
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f deployment.yaml
