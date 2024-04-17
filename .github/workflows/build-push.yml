@@ -20,10 +20,7 @@ jobs:
              --password-stdin 
         
       - name: Build docker image
-        run: docker build -t test-image . 
-
-      - name: Tag docker image
-        run: docker tag test-image:latest $ {{secrets.DOCKER_REGISTRY}}/ test-image:latest
+        run: docker build -t smitalipatekar/test-image . 
 
       - name: Push docker image
-        run: docker push test-image
+        run: docker push smitalipatekar/test-image
