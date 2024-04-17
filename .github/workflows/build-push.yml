@@ -12,14 +12,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-        -name: Login to Docker Hub
-          run: echo "${{secrets.DOCKER_TOKEN}}"
-          | docker login -u $
-          {{secrets.Docker_USERNAME} --password-stdin}
         
       - name: Build docker image
         run: docker build -t smitalipatekar/test-image . 
 
       - name: Push docker image
-        run: docker push smitalipatekar/test-image
+        run: | 
+          echo "$
+          {{secrets.DOCKER_TOKEN}}" |
+          docker login -u $
+          {{ secrets.DOCKER_USERNAME}}
+          --password-stdin
+          docker push smitalipatekar/test-image
