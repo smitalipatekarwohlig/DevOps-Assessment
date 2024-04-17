@@ -15,9 +15,9 @@ jobs:
 
       - name: Build Docker image
         run: 
-          docker build -t your-docker-registry/your-image-name:${{ github.sha }} .
-          docker login -u your-username -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push your-docker-registry/your-image-name:${{ github.sha }}
+          docker build -t smitalipatekar/test-image2:${{ github.sha }} .
+          docker login -u smitalipatekar -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push smitalipatekar/test-image2:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
         uses: azure/k8s-set-context@v1
         with:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
-          namespace: your-namespace
+          namespace: smitalipatekar
 
       - name: Deploy to Kubernetes
         run: kubectl apply -f deployment.yaml
